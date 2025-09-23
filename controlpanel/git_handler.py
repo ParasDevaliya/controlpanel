@@ -7,23 +7,25 @@ NGINX_CONF_PATH = "/etc/nginx/sites-available"
 
 def handle_git_clone_and_docker(data):
     at = data.get('at')
-    gu = data.get('gu') 
+    gu = data.get('gu')
     print("access token and github url", at, gu)
 
     if not (at and gu):
         return {'error': 'Missing parameters'}, 400
+    
+    print("step 1")
 
     try:
         token = base64.b64decode(at).decode('utf-8')
     except Exception as e:
         return {'error': 'Invalid token encoding'}, 400
-
+    print("step 2")
     if gu.startswith("https://"):
         parts = gu.split("https://", 1)
         secure_url = f"https://{token}@{parts[1]}"
     else:
         return {'error': 'Invalid GitHub URL'}, 400
-
+    print("step 3")
     # Use NGINX_PROJECTS_PATH directly
     repo_dir = NGINX_PROJECTS_PATH
     clone_cmd = ["git", "clone", secure_url, repo_dir]
