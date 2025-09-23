@@ -6,6 +6,7 @@ import tempfile
 def handle_git_clone_and_docker(data):
     at = data.get('at')
     gu = data.get('gu') 
+    print("access token and github url", at,gu)
 
     if not (at and gu):
         return {'error': 'Missing parameters'}, 400

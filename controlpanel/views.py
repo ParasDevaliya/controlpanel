@@ -12,7 +12,7 @@ def git(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Only POST method allowed'}, status=405)
     try:
-        print("[DEBUG] POST /git/ called")
+        print("called from ipless react router app")
         data = json.loads(request.body)
         result, status = handle_git_clone_and_docker(data)
         return JsonResponse(result, status=status)
