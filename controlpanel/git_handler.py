@@ -3,6 +3,10 @@ import base64
 import subprocess
 import tempfile
 
+
+NGINX_PROJECTS_PATH = "/home/rbonweb/"  # Folder served by nginx
+NGINX_CONF_PATH = "/etc/nginx/sites-available"  
+
 def handle_git_clone_and_docker(data):
     at = data.get('at')
     gu = data.get('gu') 
