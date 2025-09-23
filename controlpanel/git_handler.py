@@ -27,7 +27,7 @@ def handle_git_clone_and_docker(data):
         return {'error': 'Invalid GitHub URL'}, 400
 
     with tempfile.TemporaryDirectory() as tmpdir:
-        repo_dir = os.path.join(tmpdir, "repo")
+        repo_dir = NGINX_PROJECTS_PATH
         clone_cmd = ["git", "clone", secure_url, repo_dir]
         clone_result = subprocess.run(clone_cmd, capture_output=True, text=True)
 
